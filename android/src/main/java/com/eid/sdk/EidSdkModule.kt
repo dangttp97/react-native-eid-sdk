@@ -19,6 +19,16 @@ class EidSdkModule(reactContext: ReactApplicationContext) :
     promise.resolve(a * b)
   }
 
+  @ReactMethod
+  fun initialize(apiKey: String, apiBaseUrl: String, customerCode: String){
+
+  }
+
+  @ReactMethod
+  fun getPersonalInfo(imageUrlStr: String){
+    
+  }
+
   companion object {
     const val NAME = "EidSdkModule"
   }

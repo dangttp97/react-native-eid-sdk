@@ -22,12 +22,8 @@ const EidSdk: EidSdkType = Platform.select({
     },
   },
   android: {
-    initialize: () => {
-      throw new Error('Not implemented');
-    },
-    getPersonalInfo: () => {
-      throw new Error('Not implemented');
-    },
+    initialize: EidSdkModule.initialize,
+    getPersonalInfo: EidSdkModule.getPersonalInfo,
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },

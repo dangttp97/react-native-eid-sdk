@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Pressable, Text, View } from 'react-native';
 import { launchCamera } from 'react-native-image-picker';
-import RNNationalDatabase from 'react-native-national-db-lib';
+import EidSdk from 'react-native-eid-sdk';
 
 const App = () => {
   const handleOpenCamera = async () => {
@@ -10,9 +10,8 @@ const App = () => {
       mediaType: 'photo',
     });
 
-    const info = await RNNationalDatabase.getMRZInfo(
-      imageResponse?.assets?.[0]?.uri ?? '',
-      0
+    const info = await EidSdk.getPersonalInfo(
+      imageResponse?.assets?.[0]?.uri ?? ''
     );
 
     console.log('MRZ info', info);
