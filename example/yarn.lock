@@ -5346,19 +5346,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-image-picker@npm:^7.1.2":
-  version: 7.1.2
-  resolution: "react-native-image-picker@npm:7.1.2"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: af52328b7cb06c28549442f0d923cfa92dde8d5a968a642336df4c882f81adbf0e5e606a14de27f96883a76fa1e03230061c4080011c9107942edebc8e09c478
-  languageName: node
-  linkType: hard
-
-"react-native-national-db-lib-example@workspace:.":
+"react-native-eid-sdk-example@workspace:.":
   version: 0.0.0-use.local
-  resolution: "react-native-national-db-lib-example@workspace:."
+  resolution: "react-native-eid-sdk-example@workspace:."
   dependencies:
     "@babel/core": ^7.20.0
     "@babel/preset-env": ^7.20.0
@@ -5372,6 +5362,16 @@ __metadata:
     react-native-image-picker: ^7.1.2
   languageName: unknown
   linkType: soft
+
+"react-native-image-picker@npm:^7.1.2":
+  version: 7.1.2
+  resolution: "react-native-image-picker@npm:7.1.2"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+  checksum: af52328b7cb06c28549442f0d923cfa92dde8d5a968a642336df4c882f81adbf0e5e606a14de27f96883a76fa1e03230061c4080011c9107942edebc8e09c478
+  languageName: node
+  linkType: hard
 
 "react-native@npm:0.74.0":
   version: 0.74.0
