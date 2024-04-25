@@ -1,3 +1,2 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.nationaldblib">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.eid.sdk">
 </manifest>

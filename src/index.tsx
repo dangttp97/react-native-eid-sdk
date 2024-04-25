@@ -1,22 +1,48 @@
 import { NativeModules, Platform } from 'react-native';
+import { PersonalInfo } from './models';
 
-const LINKING_ERROR =
-  `The package 'react-native-national-db-lib' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
+type EidSdkType = {
+  initialize: (
+    apiKey: string,
+    apiBaseUrl: string,
+    customerCode: string
+  ) => void;
+  getPersonalInfo: (imageUrlStr: string) => Promise<PersonalInfo>;
+  showScanFaceView: () => void;
+};
 
-const NationalDbLib = NativeModules.NationalDbLib
-  ? NativeModules.NationalDbLib
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+const { EidSdkModule } = NativeModules;
 
-export function multiply(a: number, b: number): Promise<number> {
-  return NationalDbLib.multiply(a, b);
-}
+const EidSdk: EidSdkType = Platform.select({
+  ios: {
+    initialize: EidSdkModule.initialize,
+    getPersonalInfo: EidSdkModule.getPersonalInfo,
+    showScanFaceView: () => {
+      throw new Error('Not implemented');
+    },
+  },
+  android: {
+    initialize: () => {
+      throw new Error('Not implemented');
+    },
+    getPersonalInfo: () => {
+      throw new Error('Not implemented');
+    },
+    showScanFaceView: () => {
+      throw new Error('Not implemented');
+    },
+  },
+  default: {
+    initialize: () => {
+      throw new Error('Not implemented');
+    },
+    getPersonalInfo: () => {
+      throw new Error('Not implemented');
+    },
+    showScanFaceView: () => {
+      throw new Error('Not implemented');
+    },
+  },
+});
+
+export default EidSdk;

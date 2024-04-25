@@ -1,7 +1,7 @@
 {
-  "name": "react-native-national-db-lib",
+  "name": "react-native-eid-sdk",
   "version": "0.1.0",
-  "description": "Vietnam National Database React Native Library",
+  "description": "React Native Library for National EID",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -26,7 +26,7 @@
     "!**/.*"
   ],
   "scripts": {
-    "example": "yarn workspace react-native-national-db-lib-example",
+    "example": "yarn workspace react-native-eid-sdk-example",
     "test": "jest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -41,14 +41,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dangttp97/react-native-national-db-lib.git"
+    "url": "git+https://github.com/dangttp97/react-native-eid-sdk.git"
   },
   "author": "Trần Thành Phương Đăng <phuongdang012@gmail.com> (https://github.com/dangttp97)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dangttp97/react-native-national-db-lib/issues"
+    "url": "https://github.com/dangttp97/react-native-eid-sdk/issues"
   },
-  "homepage": "https://github.com/dangttp97/react-native-national-db-lib#readme",
+  "homepage": "https://github.com/dangttp97/react-native-eid-sdk#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
