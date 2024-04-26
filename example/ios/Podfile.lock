@@ -1302,7 +1302,6 @@ DEPENDENCIES:
   - Alamofire
   - AnyCodable-FlightSchool (~> 0.6.0)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
-  - CocoaLumberjack/Swift
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
@@ -1561,7 +1560,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 36a2bbc272300313653d980de5ab700ec86c534a
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 5e05d78fe6505f4a054b86f415733d4ad02dd314
-  react-native-eid-sdk: cf0147788c22999bea81ad43b9ac2ebbf3176004
+  react-native-eid-sdk: 61e164d5ec408ee9027882ea3e7c981f79e08b30
   react-native-image-picker: c3afe5472ef870d98a4b28415fc0b928161ee5f7
   React-nativeconfig: 951ec32f632e81cbd7d40aebb3211313251c092e
   React-NativeModulesApple: 0b3a42ca90069119ef79d8b2327d01441d71abd4
@@ -1591,6 +1590,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   Yoga: 56f906bf6c11c931588191dde1229fd3e4e3d557
 
-PODFILE CHECKSUM: f11c36f498df186866d43a1ff161a78a836a2f99
+PODFILE CHECKSUM: 07352aff6549b2219dd444adeea4a89294eaf7e5
 
 COCOAPODS: 1.15.2

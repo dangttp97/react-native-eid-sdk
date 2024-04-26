@@ -1,6 +1,7 @@
 import xverifysdk
 import Foundation
 import React
+import Alamofire
 
 @objc(EidSdkModule)
 class EidSdkModule: NSObject {
@@ -8,7 +9,7 @@ class EidSdkModule: NSObject {
         APISERVICE.initialize(apiKey: apiKey, apiBaseUrl: apiBaseUrl, customerCode: customerCode)
     }
     
-    @objc func readIdentityNFC(imageUrlStr: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock){
+    @objc func getPersonalInfo(imageUrlStr: String, resolve: @escaping RCTPromiseResolveBlock, reject: @escaping RCTPromiseRejectBlock){
         MRZController.getMRZInfo(imageUrlStr: imageUrlStr, timeRequired: 0, completion: { data in
             guard let info = data else {
                 reject(nil, nil, nil)
