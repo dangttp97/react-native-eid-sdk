@@ -16,16 +16,6 @@ end
 
 target 'EidSdkExample' do
   config = use_native_modules!
-
-  pod "Alamofire",:modular_headers => true
-  pod 'AnyCodable-FlightSchool', '~> 0.6.0', :modular_headers => true
-  pod 'CocoaLumberjack/Swift', :modular_headers => true
-  pod 'SwiftyJSON', :modular_headers => true
-  pod 'GoogleMLKit/Vision', :modular_headers => true
-  pod 'GoogleMLKit/FaceDetection', :modular_headers => true
-  pod 'GoogleMLKit/TextRecognition', :modular_headers => true
-  pod 'OpenSSL-Universal', '~> 1.1.2200', :modular_headers => true
-  pod "PINCache", :modular_headers => true
   
   use_react_native!(
     :path => config[:reactNativePath],
@@ -33,6 +23,9 @@ target 'EidSdkExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   
+  pod "CocoaLumberjack", :modular_headers => true
+  pod "PINCache", :modular_headers => true
+
   target 'EidSdkExampleTests' do
     inherit! :complete
     # Pods for testing
@@ -46,5 +39,6 @@ target 'EidSdkExample' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+
   end
 end

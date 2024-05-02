@@ -1,26 +1,32 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import React from 'react';
-import EidSdk from 'react-native-eid-sdk'
+import * as React from 'react';
 
-export default function App() {
-  const startEIDSDK = () =>{
-    EidSdk.initialize("","","")
-  }
+import { Pressable, Text, View } from 'react-native';
+import { launchCamera } from 'react-native-image-picker';
+import EidSdk from 'react-native-eid-sdk';
+
+const App = () => {
+  const handleOpenCamera = async () => {
+    const imageResponse = await launchCamera({
+      mediaType: 'photo',
+    });
+
+    const info = await EidSdk.getPersonalInfo(
+      imageResponse?.assets?.[0]?.uri ?? ''
+    );
+
+    console.log('MRZ info', info);
+  };
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <TouchableOpacity
-      onPress={startEIDSDK}
-        style={{
-          backgroundColor: 'blue',
-          paddingHorizontal: 10,
-          paddingVertical: 6,
-          borderRadius: 5,
-        }}
+    <View>
+      <Pressable
+        onPress={() => handleOpenCamera()}
+        style={{ backgroundColor: 'gray', padding: 10 }}
       >
-        <Text style={{ color: 'white', fontSize: 18 }}>
-          Start Native eid sdk
-        </Text>
-      </TouchableOpacity>
+        <Text style={{ color: 'black' }}>Open camera</Text>
+      </Pressable>
     </View>
   );
-}
+};
+
+export default App;

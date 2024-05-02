@@ -2,9 +2,9 @@ PODS:
   - Alamofire (5.9.1)
   - AnyCodable-FlightSchool (0.6.7)
   - boost (1.83.0)
+  - CocoaLumberjack (3.8.5):
+    - CocoaLumberjack/Core (= 3.8.5)
   - CocoaLumberjack/Core (3.8.5)
-  - CocoaLumberjack/Swift (3.8.5):
-    - CocoaLumberjack/Core
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.74.0)
   - fmt (9.1.0)
@@ -1015,8 +1015,8 @@ PODS:
     - React-debug
   - react-native-eid-sdk (0.1.0):
     - Alamofire
-    - AnyCodable-FlightSchool
-    - CocoaLumberjack/Swift
+    - AnyCodable-FlightSchool (~> 0.6.0)
+    - CocoaLumberjack
     - DoubleConversion
     - glog
     - GoogleMLKit/FaceDetection
@@ -1024,7 +1024,7 @@ PODS:
     - GoogleMLKit/Vision
     - hermes-engine
     - ObjectMapper
-    - OpenSSL-Universal
+    - OpenSSL-Universal (~> 1.1.2200)
     - PINCache
     - RCT-Folly (= 2024.01.01.00)
     - RCTRequired
@@ -1295,23 +1295,16 @@ PODS:
     - React-utils (= 0.74.0)
   - SocketRocket (0.7.0)
   - SwiftDate (7.0.0)
-  - SwiftyJSON (5.0.2)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
-  - Alamofire
-  - AnyCodable-FlightSchool (~> 0.6.0)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
-  - CocoaLumberjack/Swift
+  - CocoaLumberjack
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - GoogleMLKit/FaceDetection
-  - GoogleMLKit/TextRecognition
-  - GoogleMLKit/Vision
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
-  - OpenSSL-Universal (~> 1.1.2200)
   - PINCache
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -1364,7 +1357,6 @@ DEPENDENCIES:
   - React-runtimescheduler (from `../node_modules/react-native/ReactCommon/react/renderer/runtimescheduler`)
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - SwiftyJSON
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1392,7 +1384,6 @@ SPEC REPOS:
     - PromisesObjC
     - SocketRocket
     - SwiftDate
-    - SwiftyJSON
 
 EXTERNAL SOURCES:
   boost:
@@ -1561,7 +1552,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 36a2bbc272300313653d980de5ab700ec86c534a
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 5e05d78fe6505f4a054b86f415733d4ad02dd314
-  react-native-eid-sdk: cf0147788c22999bea81ad43b9ac2ebbf3176004
+  react-native-eid-sdk: f2070b53dd7d996fca9444217251e2d10b3054d6
   react-native-image-picker: c3afe5472ef870d98a4b28415fc0b928161ee5f7
   React-nativeconfig: 951ec32f632e81cbd7d40aebb3211313251c092e
   React-NativeModulesApple: 0b3a42ca90069119ef79d8b2327d01441d71abd4
@@ -1588,9 +1579,8 @@ SPEC CHECKSUMS:
   ReactCommon: 2cde697fd80bd31da1d6448d25a5803088585219
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
-  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   Yoga: 56f906bf6c11c931588191dde1229fd3e4e3d557
 
-PODFILE CHECKSUM: f11c36f498df186866d43a1ff161a78a836a2f99
+PODFILE CHECKSUM: 7a66a8fbe2733c2395a3b9689e83a70f856c6d63
 
 COCOAPODS: 1.15.2
