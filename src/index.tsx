@@ -1,5 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
-import { PersonalInfo } from './models';
+import {  Eid, PersonalInfo } from './models';
 
 type EidSdkType = {
   initialize: (
@@ -9,6 +9,7 @@ type EidSdkType = {
   ) => void;
   getPersonalInfo: (imageUrlStr: string) => Promise<PersonalInfo>;
   showScanFaceView: () => void;
+  start: (result?: Eid) => void;
 };
 
 const { EidSdkModule } = NativeModules;
@@ -20,6 +21,9 @@ const EidSdk: EidSdkType = Platform.select({
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },
+    start: () => {
+      throw new Error('Not implemented');
+    },
   },
   android: {
     initialize: EidSdkModule.initialize,
@@ -29,6 +33,7 @@ const EidSdk: EidSdkType = Platform.select({
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },
+    start: EidSdkModule.start,
   },
   default: {
     initialize: () => {
@@ -38,6 +43,9 @@ const EidSdk: EidSdkType = Platform.select({
       throw new Error('Not implemented');
     },
     showScanFaceView: () => {
+      throw new Error('Not implemented');
+    },
+    start: () => {
       throw new Error('Not implemented');
     },
   },
