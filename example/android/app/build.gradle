@@ -103,10 +103,10 @@ android {
         }
     }
 
-    buildFeatures {
-      buildConfig = true
-      viewBinding = true
-    }
+//    buildFeatures {
+//      buildConfig = true
+//      viewBinding = true
+//    }
 }
 
 dependencies {
