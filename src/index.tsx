@@ -1,6 +1,6 @@
 import { NativeModules, Platform, requireNativeComponent } from 'react-native';
 import React from 'react';
-import { PersonalInfo } from './models';
+import { PersonalInfo, Eid } from './models';
 
 type EidSdkType = {
   CameraFeedView?: ({ ...props }: CameraFeedProps) => React.JSX.Element;
@@ -11,6 +11,7 @@ type EidSdkType = {
   ) => void;
   getPersonalInfo: (imageUrlStr: string) => Promise<PersonalInfo>;
   showScanFaceView: () => void;
+  start: (result?: Eid) => void;
 };
 
 const { EidSdkModule } = NativeModules;
@@ -38,6 +39,9 @@ const EidSdk: EidSdkType = Platform.select({
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },
+    start: () => {
+      throw new Error('Not implemented');
+    },
   },
   android: {
     CameraFeedView: undefined,
@@ -48,6 +52,7 @@ const EidSdk: EidSdkType = Platform.select({
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },
+    start: EidSdkModule.start,
   },
   default: {
     CameraFeedView: undefined,
@@ -58,6 +63,9 @@ const EidSdk: EidSdkType = Platform.select({
       throw new Error('Not implemented');
     },
     showScanFaceView: () => {
+      throw new Error('Not implemented');
+    },
+    start: () => {
       throw new Error('Not implemented');
     },
   },

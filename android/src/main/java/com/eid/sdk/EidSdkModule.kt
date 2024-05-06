@@ -1,40 +1,28 @@
 package com.eid.sdk
 
-import android.app.Activity
-import android.content.Intent
-import com.facebook.react.bridge.ActivityEventListener
-import com.facebook.react.bridge.BaseActivityEventListener
+import android.graphics.Bitmap
+import android.util.Base64
+import android.util.Log
+import com.facebook.react.bridge.Callback
+import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
-import vn.jth.xverifysdk.activities.verifyeid.VerifyEidMainActivity
+import com.facebook.react.bridge.WritableMap
+import com.facebook.react.bridge.WritableNativeMap
+import vn.jth.xverifysdk.activities.EidSDK
+import vn.jth.xverifysdk.network.ApiService.APISERVICE
+import java.io.ByteArrayOutputStream
+import java.util.Calendar
 
 
 class EidSdkModule(reactContext: ReactApplicationContext) :
-  ReactContextBaseJavaModule(reactContext), ActivityEventListener {
+  ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
     return NAME
   }
 
-
-
-//  override fun onActivityResult(activity: Activity, requestCode: Int, resultCode: Int, data: Intent?) {
-//    if (requestCode == START_ACTIVITY_REQUEST_CODE) {
-//      val success = resultCode == Activity.RESULT_OK
-//      val result = Arguments.createMap().apply {
-//        putBoolean("success", success)
-//        // Add any additional data you want to pass back to JavaScript
-//      }
-//      reactApplicationContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter::class.java)
-//        .emit("ActivityResultEvent", result)
-//    }
-//  }
-
-
-
-  // Example method
   // See https://reactnative.dev/docs/native-modules-android
   @ReactMethod
   fun multiply(a: Double, b: Double, promise: Promise) {
@@ -43,13 +31,55 @@ class EidSdkModule(reactContext: ReactApplicationContext) :
 
   @ReactMethod
   fun initialize(apiKey: String, apiBaseUrl: String, customerCode: String) {
-    val intent = Intent(reactApplicationContext, VerifyEidMainActivity::class.java)
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    reactApplicationContext.startActivity(intent)
+    APISERVICE.init(apiKey, apiBaseUrl, customerCode)
+  }
+
+  @ReactMethod
+  fun start(callback:Callback) {
+    EidSDK.startSDK(reactApplicationContext) { result ->
+      // Gửi kết quả về cho React Native thông qua native module
+      Log.e("EidSDK.startSDK",result.personOptionalDetails?.fullName.toString())
+      val personMap: WritableMap = WritableNativeMap()
+      val byteArrayOutputStream = ByteArrayOutputStream()
+      result.face?.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream)
+      val byteArray = byteArrayOutputStream.toByteArray()
+      val base64 = Base64.encodeToString(byteArray, Base64.DEFAULT)
+      personMap.putString("face",base64);
+      personMap.putString("fullname", result.personOptionalDetails?.fullName)
+      personMap.putString("gender",result.personOptionalDetails?.gender)
+      personMap.putString("dateOfBirth",result.personOptionalDetails?.dateOfBirth)
+      personMap.putString("age", result.personOptionalDetails?.dateOfBirth?.let { calcAge(it) })
+      personMap.putString("eidNumber",result.personOptionalDetails?.eidNumber)
+      personMap.putString("dateOfIssue",result.personOptionalDetails?.dateOfIssue)
+      personMap.putString("dateOfExpiry",result.personOptionalDetails?.dateOfExpiry)
+      personMap.putString("ethnicity",result.personOptionalDetails?.ethnicity)
+      personMap.putString("religion",result.personOptionalDetails?.religion)
+      personMap.putString("placeOfOrigin",result.personOptionalDetails?.placeOfOrigin)
+      personMap.putString("placeOfResidence",result.personOptionalDetails?.placeOfResidence)
+      personMap.putString("personalIdentification",result.personOptionalDetails?.personalIdentification)
+      personMap.putString("fatherName",result.personOptionalDetails?.fatherName)
+      personMap.putString("motherName",result.personOptionalDetails?.motherName)
+      personMap.putString("spouseName",result.personOptionalDetails?.spouseName)
+      personMap.putString("oldEidNumber",result.personOptionalDetails?.oldEidNumber)
 
 
+      val res: WritableMap = WritableNativeMap()
+      res.putMap("personOptionalDetails", personMap)
 
-//    promise.resolve(a * b)
+      callback.invoke(res);
+    }
+  }
+
+  private fun calcAge(date: String): String {
+    val sYear = date.substring(date.lastIndexOf("/") + 1)
+    val calendar = Calendar.getInstance()
+    val currentYear = calendar[Calendar.YEAR]
+    try {
+      val age = currentYear - sYear.toInt()
+      return if (age > 0) age.toString() else "-"
+    } catch (ex: NumberFormatException) {
+    }
+    return "-"
   }
 
 
@@ -57,11 +87,4 @@ class EidSdkModule(reactContext: ReactApplicationContext) :
     const val NAME = "EidSdkModule"
   }
 
-  override fun onActivityResult(p0: Activity?, p1: Int, p2: Int, p3: Intent?) {
-    TODO("Not yet implemented")
-  }
-
-  override fun onNewIntent(p0: Intent?) {
-    TODO("Not yet implemented")
-  }
 }
