@@ -18,7 +18,7 @@
 		</data>
 		<key>GoogleMVFaceDetectorResources.bundle/Info.plist</key>
 		<data>
-		hyGdK5/wmHZih+4p20buVguW/QU=
+		Jqz9RHkI2a3chZrENbsws021vyo=
 		</data>
 		<key>GoogleMVFaceDetectorResources.bundle/LMprec_600.emd</key>
 		<data>
@@ -58,19 +58,15 @@
 		</data>
 		<key>Headers/xverifysdk-Swift.h</key>
 		<data>
-		US4na6bMwKczXgWF7GB0C4vN+GI=
-		</data>
-		<key>Headers/xverifysdk.h</key>
-		<data>
-		ht9Rj19/l0Dbu37tJwg3vESi8gc=
+		Np/DJ+lzC8lFsKUekCNBeFr6L98=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		EFDi49ei63uC1vZciAD/GGQJO4s=
+		xGTMSk4KnY9/lO5VRe+bvzhapzs=
 		</data>
 		<key>LatinOCRResources.bundle/Info.plist</key>
 		<data>
-		BfjmuC5qYKnZ6wGxico5h8frpLQ=
+		ZuYQXZtluw4flL+P/UICLhg6peQ=
 		</data>
 		<key>LatinOCRResources.bundle/region_proposal_text_detector_tflite_gray_quantized.bincfg</key>
 		<data>
@@ -106,27 +102,31 @@
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		iebNWgETn6+M9SiUVWsDCxHy0Qc=
+		J+Gfz5ogvlF6cHFyrtZgMn+lUIg=
+		</data>
+		<key>Modules/xverifysdk.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
+		<data>
+		oS/tWa1RcPPkrkbfWEshL/w4iNk=
 		</data>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		jn+kD+1kT78XkoKOormd/YQfUZw=
+		Uf509YP6018tnYTPftbZKHOIYEM=
 		</data>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		qGXFvgR7LNRkG6tGm5bsRDzLP+Y=
+		G0nb3J51cs08guNygUYPgDiEUCg=
 		</data>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		n3GjWoQKdzQc3vE8F5H9NzWHiNU=
+		VSexJYqgL2Itbhm3vniW6JFaYPM=
 		</data>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		qGXFvgR7LNRkG6tGm5bsRDzLP+Y=
+		G0nb3J51cs08guNygUYPgDiEUCg=
 		</data>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		49MMMCWdHdQI6baynBWZvbncBJE=
+		NZBEW0ZTKsdBQKDTMzzmq/nwzvM=
 		</data>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
@@ -174,7 +174,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8R8fA21jPASBTRW8gWlupxxMGXlKZQr8S4QLTUUlQy0=
+			a/1SPFe0QdxhAmKrfz8no4HNp6tQn/sBaWRXNqdSqd4=
 			</data>
 		</dict>
 		<key>GoogleMVFaceDetectorResources.bundle/LMprec_600.emd</key>
@@ -244,21 +244,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			G/+bj4d5xYk6xkjri+5lKPH6Ca+Kyckj0yYauyFCJ+k=
-			</data>
-		</dict>
-		<key>Headers/xverifysdk.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			IaKCnQrNX6s7YMY4Wj9yv7feSeD9HKo0537oyVEOqFU=
+			+pIC85uqcSuSdRMMVQCagqNqdwhbh9H+diiD5nML7Gc=
 			</data>
 		</dict>
 		<key>LatinOCRResources.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			TP4A9hUm0Go1Ttt2R92MyQ1ApRzI8koqgv0COfGNBKw=
+			FMa9yO2e/185EvgVS035WyiwEVhGrf7qEqRKdXJIQOw=
 			</data>
 		</dict>
 		<key>LatinOCRResources.bundle/region_proposal_text_detector_tflite_gray_quantized.bincfg</key>
@@ -321,42 +314,49 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8Jfeo9fmrFi9ZmB9aGwrifyE8/F4RCRHE6p1K4ux4pE=
+			Kro3Cx6+CsGEnnz0uHASHuOBfvJx4DIK1EwzGFWKlSo=
+			</data>
+		</dict>
+		<key>Modules/xverifysdk.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			6IdYM1pyrmNTOuZeYoShLI7zken6TL7xj8vUdlnqr70=
 			</data>
 		</dict>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WPDDT2Th/+5eOxF8X/SqtNRIoS1/zk+FpQvuSOlUAac=
+			RJm9zB3AKSyZvNv0liEJj9WOvlzigagIXvtaR9SmiqE=
 			</data>
 		</dict>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nJL5KFSz2FDVcoenHq9dVCJYIFU37UpwFlZG32cKRXw=
+			FWUezUntHDeT55Msp58Ku3LnIAM0hAMWvq2h4EIvlIY=
 			</data>
 		</dict>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Zm6hAKyXHTftPucyaj5bsoGrKqUOlrZ/SYvhthedmes=
+			zcy0SS+89xefal01LOeJj0HZ13JPESTgX9bhZKx0P3s=
 			</data>
 		</dict>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nJL5KFSz2FDVcoenHq9dVCJYIFU37UpwFlZG32cKRXw=
+			FWUezUntHDeT55Msp58Ku3LnIAM0hAMWvq2h4EIvlIY=
 			</data>
 		</dict>
 		<key>Modules/xverifysdk.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			a9HCQzV/lbFLZSPjSm7eSB4C9nNmrolTnWTPT4x0mUs=
+			K4lW2YvMtd55BBzKOxXUV5Z11bulVLdvO9vG6MhaFEA=
 			</data>
 		</dict>
 		<key>en.lproj/Localizable.strings</key>

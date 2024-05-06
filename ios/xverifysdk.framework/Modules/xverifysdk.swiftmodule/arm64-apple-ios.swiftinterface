@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
-// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name xverifysdk
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name xverifysdk
 import AVFoundation
 import Alamofire
 import CocoaLumberjack
@@ -24,7 +24,6 @@ import _Concurrency
 import _CoreNFC_UIKit
 import _StringProcessing
 import _SwiftConcurrencyShims
-@_exported import xverifysdk
 @_hasMissingDesignatedInitializers public class CecaContentResponseModel : ObjectMapper.Mappable, xverifysdk.ModelProtocol {
   dynamic public var transactionId: Swift.String
   dynamic public var data: xverifysdk.CecaDataResponseModel?
@@ -131,8 +130,8 @@ public enum EidAuthenticationStatus {
     get
   }
 }
-@available(iOS 13, macOS 10.15, *)
-public class NfcEidModel {
+@_inheritsConvenienceInitializers @available(iOS 13, macOS 10.15, *)
+@objc public class NfcEidModel : ObjectiveC.NSObject {
   public var dataGroupsPresent: [Swift.String] {
     get
   }
@@ -240,8 +239,8 @@ public class NfcEidModel {
   public var activeAuthenticationSupported: Swift.Bool {
     get
   }
-  public init()
-  public init(from dump: [Swift.String : Swift.String])
+  @objc override dynamic public init()
+  convenience public init(from dump: [Swift.String : Swift.String])
   public func addDataGroup(_ id: xverifysdk.DataGroupId, dataGroup: xverifysdk.DataGroup)
   public func getDataGroup(_ id: xverifysdk.DataGroupId) -> xverifysdk.DataGroup?
   public func dumpEidData(selectedDataGroups: [xverifysdk.DataGroupId], includeActiveAuthenticationData: Swift.Bool = false) -> [Swift.String : Swift.String]
@@ -337,15 +336,15 @@ public class CecaDataResponseModel : ObjectMapper.Mappable, xverifysdk.ModelProt
   @objc public func isValid() -> Swift.Bool
   @objc deinit
 }
-@objc @available(iOS 13, *)
-public class EidReader : ObjectiveC.NSObject {
+@available(iOS 13, *)
+@objc public class EidReader : ObjectiveC.NSObject {
   public var passiveAuthenticationUsesOpenSSL: Swift.Bool
   public var terminateSessionWhenHangingTime: Swift.Double
   public init(masterListURL: Foundation.URL? = nil)
   public func setMasterListURL(_ masterListURL: Foundation.URL)
   public func overrideNFCDataAmountToRead(amount: Swift.Int)
   #if compiler(>=5.3) && $AsyncAwait
-  public func readEid(mrzKey: Swift.String, tags: [xverifysdk.DataGroupId] = [], skipSecureElements: Swift.Bool = true, skipCA: Swift.Bool = false, skipPACE: Swift.Bool = false, customDisplayMessage: ((xverifysdk.NfcViewDisplayMessage) -> Swift.String?)? = nil) async throws -> xverifysdk.NfcEidModel
+  @objc public func readEid(mrzKey: Swift.String, tags: Foundation.NSMutableArray = [], skipSecureElements: Swift.Bool = true, skipCA: Swift.Bool = false, skipPACE: Swift.Bool = false) async throws -> xverifysdk.NfcEidModel
   #endif
   @objc deinit
 }
@@ -356,7 +355,7 @@ extension xverifysdk.EidReader : CoreNFC.NFCTagReaderSessionDelegate {
   public func tagReaderSession(_ session: CoreNFC.NFCTagReaderSession, didDetect tags: [CoreNFC.NFCTag])
 }
 @available(iOS 13, macOS 10.15, *)
-public enum DocTypeEnum : Swift.String {
+public enum DocTypeEnum : Swift.String, Swift.Codable {
   case TD1
   case TD2
   case OTHER
@@ -367,7 +366,7 @@ public enum DocTypeEnum : Swift.String {
   }
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup1 : xverifysdk.DataGroup {
+@objc public class DataGroup1 : xverifysdk.DataGroup {
   public var elements: [Swift.String : Swift.String] {
     get
   }
@@ -379,8 +378,8 @@ public class DataGroup1 : xverifysdk.DataGroup {
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class MRZUtils {
-  public static func processMRZ(sampleBuffer: CoreMedia.CMSampleBuffer, timeRequired: Swift.Int, callback: @escaping (_ data: xverifysdk.MRZInfo?) -> Swift.Void)
-  public static func processMRZ(image: UIKit.UIImage, timeRequired: Swift.Int, callback: @escaping (_ data: xverifysdk.MRZInfo?) -> Swift.Void)
+  @objc public static func processMRZ(sampleBuffer: CoreMedia.CMSampleBuffer, timeRequired: Swift.Int, callback: @escaping (_ data: xverifysdk.MRZInfo?) -> Swift.Void)
+  @objc public static func processMRZ(image: UIKit.UIImage, timeRequired: Swift.Int, callback: @escaping (_ data: xverifysdk.MRZInfo?) -> Swift.Void)
   @objc deinit
 }
 public class CecaInfoResponseModel : ObjectMapper.Mappable, xverifysdk.ModelProtocol {
@@ -409,7 +408,7 @@ public class CecaDataRequestModel : ObjectMapper.Mappable, xverifysdk.ModelProto
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup13 : xverifysdk.DataGroup {
+@objc public class DataGroup13 : xverifysdk.DataGroup {
   public static let PREFIX_EID: [Swift.UInt8]
   public static let IDX_FULLNAME: Swift.UInt8
   public static let PREFIX_FULLNAME: [Swift.UInt8]
@@ -464,7 +463,7 @@ public class DataGroup13 : xverifysdk.DataGroup {
   public var unkInfo: [Swift.String]
   @objc deinit
 }
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
 public class DataGroup2 : xverifysdk.DataGroup {
   public var nrImages: Swift.Int {
     get
@@ -535,7 +534,7 @@ public class DataGroup2 : xverifysdk.DataGroup {
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup7 : xverifysdk.DataGroup {
+@objc public class DataGroup7 : xverifysdk.DataGroup {
   public var imageData: [Swift.UInt8] {
     get
   }
@@ -602,26 +601,26 @@ public func DISPATCH_ASYNC_MAIN(_ closure: @escaping () -> Swift.Void)
 public func DISPATCH_ASYNC_BG(_ closure: @escaping () -> Swift.Void)
 public func DISPATCH_ASYNC_BG_AFTER(_ delay: Swift.Double, _ closure: @escaping () -> Swift.Void)
 @available(iOS 13, macOS 10.15, *)
-public enum DataGroupId : Swift.Int, Swift.CaseIterable {
-  case COM
-  case DG1
-  case DG2
-  case DG3
-  case DG4
-  case DG5
-  case DG6
-  case DG7
-  case DG8
-  case DG9
-  case DG10
-  case DG11
-  case DG12
-  case DG13
-  case DG14
-  case DG15
-  case DG16
-  case SOD
-  case Unknown
+@objc public enum DataGroupId : Swift.Int, Swift.CaseIterable {
+  case COM = 0x60
+  case DG1 = 0x61
+  case DG2 = 0x75
+  case DG3 = 0x63
+  case DG4 = 0x76
+  case DG5 = 0x65
+  case DG6 = 0x66
+  case DG7 = 0x67
+  case DG8 = 0x68
+  case DG9 = 0x69
+  case DG10 = 0x6A
+  case DG11 = 0x6B
+  case DG12 = 0x6C
+  case DG13 = 0x6D
+  case DG14 = 0x6E
+  case DG15 = 0x6F
+  case DG16 = 0x70
+  case SOD = 0x77
+  case Unknown = 0x00
   public func getName() -> Swift.String
   public static func getIDFromName(name: Swift.String) -> xverifysdk.DataGroupId
   public init?(rawValue: Swift.Int)
@@ -830,7 +829,7 @@ public let httpMimeTypeAudioMpeg: Swift.String
 public let httpMimeTypeAudioOgg: Swift.String
 public let httpScheme: Swift.String
 public let httpSslScheme: Swift.String
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
 public class COM : xverifysdk.DataGroup {
   public var version: Swift.String {
     get
@@ -913,7 +912,7 @@ public func normalizeVietnameseAccent(_ input: Swift.String) -> Swift.String?
 public func extractVietnameseProvince(_ address: Swift.String?) -> Swift.String?
 public func stringIsNullOrEmpty(_ string: Swift.String?) -> Swift.Bool
 @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup {
+@objc public class DataGroup : ObjectiveC.NSObject {
   public var datagroupType: xverifysdk.DataGroupId
   public var body: [Swift.UInt8] {
     get
@@ -925,19 +924,19 @@ public class DataGroup {
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup14 : xverifysdk.DataGroup {
+@objc public class DataGroup14 : xverifysdk.DataGroup {
   public var securityInfos: [xverifysdk.SecurityInfo] {
     get
   }
   @objc deinit
 }
 public let EIDFACADE: xverifysdk.EidFacade
-@_hasMissingDesignatedInitializers public class EidFacade {
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc public class EidFacade : ObjectiveC.NSObject {
   public class var shared: xverifysdk.EidFacade {
     get
   }
   public func generateMRZKey(eidNumber: Swift.String, dateOfBirth: Swift.String, dateOfExpiry: Swift.String) -> Swift.String
-  public func readChipNfc(mrzKey: Swift.String, completionHandler: @escaping (_ eid: xverifysdk.NfcEidModel) -> Swift.Void, errorHandler: @escaping (_ error: any Swift.Error) -> Swift.Void)
+  @objc public func readChipNfc(mrzKey: Swift.String, completionHandler: @escaping (_ eid: xverifysdk.NfcEidModel) -> Swift.Void, errorHandler: @escaping (_ error: any Swift.Error) -> Swift.Void)
   public func verifyEid(eid: xverifysdk.NfcEidModel, code: Swift.String = "", path: Swift.String = "", completionHandler: @escaping (_ eid: xverifysdk.EidVerifyModel) -> Swift.Void, errorHandler: @escaping (_ error: any Swift.Error) -> Swift.Void)
   public func verifyRsaSignature(plainText: Swift.String, signature: Swift.String, publicKey: Security.SecKey) -> Swift.Bool
   public func verifyRsaSignature(publicKeyUrl: Foundation.URL, plainText: Swift.String, signature: Swift.String) -> Swift.Bool
@@ -955,7 +954,7 @@ public class CecaVerifyResponseModel : ObjectMapper.Mappable, xverifysdk.ModelPr
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup12 : xverifysdk.DataGroup {
+@objc public class DataGroup12 : xverifysdk.DataGroup {
   public var issuingAuthority: Swift.String? {
     get
   }
@@ -992,7 +991,7 @@ public class DataGroup12 : xverifysdk.DataGroup {
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup15 : xverifysdk.DataGroup {
+@objc public class DataGroup15 : xverifysdk.DataGroup {
   public var rsaPublicKey: Swift.OpaquePointer? {
     get
   }
@@ -1008,7 +1007,7 @@ public class DataGroup15 : xverifysdk.DataGroup {
 }
 @objc public protocol AutoHashable {
 }
-@_hasMissingDesignatedInitializers public class MRZInfo {
+@_hasMissingDesignatedInitializers @objc public class MRZInfo : ObjectiveC.NSObject, Swift.Codable {
   public var documentType: xverifysdk.DocTypeEnum
   public var documentCode: Swift.String
   public var issuingState: Swift.String
@@ -1017,6 +1016,8 @@ public class DataGroup15 : xverifysdk.DataGroup {
   public var dateOfBirth: Swift.String
   public var gender: Swift.String
   public var dateOfExpiry: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
   public static func createTD1MRZInfo(documentCode: Swift.String, issuingState: Swift.String, documentNumber: Swift.String, dateOfBirth: Swift.String, gender: Swift.String, dateOfExpiry: Swift.String, nationality: Swift.String) -> xverifysdk.MRZInfo
   @objc deinit
 }
@@ -1044,7 +1045,7 @@ public class ChipAuthenticationPublicKeyInfo : xverifysdk.SecurityInfo {
   public func getKeyId() -> Swift.Int
   @objc deinit
 }
-@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
 public class NotImplementedDG : xverifysdk.DataGroup {
   @objc deinit
 }
@@ -1263,7 +1264,7 @@ public class TagReader {
   @objc deinit
 }
 @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @available(iOS 13, macOS 10.15, *)
-public class DataGroup11 : xverifysdk.DataGroup {
+@objc public class DataGroup11 : xverifysdk.DataGroup {
   public var fullName: Swift.String? {
     get
   }

@@ -15,6 +15,7 @@ if linkage != nil
 end
 
 target 'EidSdkExample' do
+  project 'EidSdkExample.xcodeproj'
   config = use_native_modules!
   
   use_react_native!(
@@ -23,22 +24,24 @@ target 'EidSdkExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   
-  pod "CocoaLumberjack", :modular_headers => true
-  pod "PINCache", :modular_headers => true
+#  pod 'Alamofire', '~> 5.8.1'
+#  pod 'OpenSSL-Universal', '~> 1.1.2200'
+#  pod 'CocoaLumberjack/Swift'
+#  pod 'ObjectMapper'
+#  pod 'SwiftDate'
+  pod 'PINCache', :modular_headers => true
+#  pod 'SwiftyJSON'
+#  pod 'GoogleMLKit/Vision'
+#  pod 'GoogleMLKit/FaceDetection'
+#  pod 'GoogleMLKit/TextRecognition'
+end
 
-  target 'EidSdkExampleTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
-  post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
-    )
-
-  end
+post_install do |installer|
+  config = use_native_modules!
+  react_native_post_install(
+    installer,
+    config[:reactNativePath],
+    :mac_catalyst_enabled => false,
+    # :ccache_enabled => true
+  )
 end

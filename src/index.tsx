@@ -1,7 +1,9 @@
-import { NativeModules, Platform } from 'react-native';
+import { NativeModules, Platform, requireNativeComponent } from 'react-native';
+import React from 'react';
 import { PersonalInfo } from './models';
 
 type EidSdkType = {
+  CameraFeedView?: ({ ...props }: CameraFeedProps) => React.JSX.Element;
   initialize: (
     apiKey: string,
     apiBaseUrl: string,
@@ -12,9 +14,25 @@ type EidSdkType = {
 };
 
 const { EidSdkModule } = NativeModules;
+const CameraFeedView = requireNativeComponent('CameraFeedView');
+
+type CameraFeedProps = {
+  onReturnMRZData: (data: any) => void;
+};
+const CameraFeed = ({ ...props }: CameraFeedProps) => {
+  const onReturnMRZData = (event: any) => {
+    if (!props.onReturnMRZData) {
+      return;
+    }
+
+    props.onReturnMRZData(event.nativeEvent);
+  };
+  return <CameraFeedView {...props} onReturnMRZData={onReturnMRZData} />;
+};
 
 const EidSdk: EidSdkType = Platform.select({
   ios: {
+    CameraFeedView: CameraFeed,
     initialize: EidSdkModule.initialize,
     getPersonalInfo: EidSdkModule.getPersonalInfo,
     showScanFaceView: () => {
@@ -22,6 +40,7 @@ const EidSdk: EidSdkType = Platform.select({
     },
   },
   android: {
+    CameraFeedView: undefined,
     initialize: EidSdkModule.initialize,
     getPersonalInfo: () => {
       throw new Error('Not implemented');
@@ -31,6 +50,7 @@ const EidSdk: EidSdkType = Platform.select({
     },
   },
   default: {
+    CameraFeedView: undefined,
     initialize: () => {
       throw new Error('Not implemented');
     },

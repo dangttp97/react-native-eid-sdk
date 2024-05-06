@@ -1,10 +1,9 @@
 PODS:
-  - Alamofire (5.9.1)
-  - AnyCodable-FlightSchool (0.6.7)
+  - Alamofire (5.8.1)
   - boost (1.83.0)
-  - CocoaLumberjack (3.8.5):
-    - CocoaLumberjack/Core (= 3.8.5)
   - CocoaLumberjack/Core (3.8.5)
+  - CocoaLumberjack/Swift (3.8.5):
+    - CocoaLumberjack/Core
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.74.0)
   - fmt (9.1.0)
@@ -29,14 +28,14 @@ PODS:
     - GoogleToolboxForMac/Defines (= 4.2.1)
   - "GoogleToolboxForMac/NSData+zlib (4.2.1)":
     - GoogleToolboxForMac/Defines (= 4.2.1)
-  - GoogleUtilities/Environment (7.13.0):
+  - GoogleUtilities/Environment (7.13.2):
     - GoogleUtilities/Privacy
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.13.0):
+  - GoogleUtilities/Logger (7.13.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Privacy
-  - GoogleUtilities/Privacy (7.13.0)
-  - GoogleUtilities/UserDefaults (7.13.0):
+  - GoogleUtilities/Privacy (7.13.2)
+  - GoogleUtilities/UserDefaults (7.13.2):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
   - GoogleUtilitiesComponents (1.1.0):
@@ -1014,9 +1013,8 @@ PODS:
     - glog
     - React-debug
   - react-native-eid-sdk (0.1.0):
-    - Alamofire
-    - AnyCodable-FlightSchool (~> 0.6.0)
-    - CocoaLumberjack
+    - Alamofire (~> 5.8.1)
+    - CocoaLumberjack/Swift
     - DoubleConversion
     - glog
     - GoogleMLKit/FaceDetection
@@ -1043,27 +1041,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - SwiftDate
-    - Yoga
-  - react-native-image-picker (7.1.2):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
+    - SwiftyJSON
     - Yoga
   - React-nativeconfig (0.74.0)
   - React-NativeModulesApple (0.74.0):
@@ -1295,11 +1273,11 @@ PODS:
     - React-utils (= 0.74.0)
   - SocketRocket (0.7.0)
   - SwiftDate (7.0.0)
+  - SwiftyJSON (5.0.2)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
-  - CocoaLumberjack
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
@@ -1333,7 +1311,6 @@ DEPENDENCIES:
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
   - React-Mapbuffer (from `../node_modules/react-native/ReactCommon`)
   - react-native-eid-sdk (from `../..`)
-  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - React-nativeconfig (from `../node_modules/react-native/ReactCommon`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1362,7 +1339,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - AnyCodable-FlightSchool
     - CocoaLumberjack
     - GoogleDataTransport
     - GoogleMLKit
@@ -1384,6 +1360,7 @@ SPEC REPOS:
     - PromisesObjC
     - SocketRocket
     - SwiftDate
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   boost:
@@ -1449,8 +1426,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   react-native-eid-sdk:
     :path: "../.."
-  react-native-image-picker:
-    :path: "../node_modules/react-native-image-picker"
   React-nativeconfig:
     :path: "../node_modules/react-native/ReactCommon"
   React-NativeModulesApple:
@@ -1501,8 +1476,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  Alamofire: f36a35757af4587d8e4f4bfa223ad10be2422b8c
-  AnyCodable-FlightSchool: 261cbe76757802b17d471b9059b21e6fa5edf57b
+  Alamofire: 3ca42e259043ee0dc5c0cdd76c4bc568b8e42af7
   boost: d3f49c53809116a5d38da093a8aa78bf551aed09
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   DoubleConversion: 76ab83afb40bddeeee456813d9c04f67f78771b5
@@ -1512,7 +1486,7 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
   GoogleMLKit: 97ac7af399057e99182ee8edfa8249e3226a4065
   GoogleToolboxForMac: d1a2cbf009c453f4d6ded37c105e2f67a32206d8
-  GoogleUtilities: d053d902a8edaa9904e1bd00c37535385b8ed152
+  GoogleUtilities: c56430aef51a1aa57b25da78c3f8397e522c67b7
   GoogleUtilitiesComponents: 679b2c881db3b615a2777504623df6122dd20afe
   GTMSessionFetcher: 8000756fc1c19d2e5697b90311f7832d2e33f6cd
   hermes-engine: 6eae7edb2f563ee41d7c1f91f4f2e57c26d8a5c3
@@ -1552,8 +1526,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 36a2bbc272300313653d980de5ab700ec86c534a
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 5e05d78fe6505f4a054b86f415733d4ad02dd314
-  react-native-eid-sdk: f2070b53dd7d996fca9444217251e2d10b3054d6
-  react-native-image-picker: c3afe5472ef870d98a4b28415fc0b928161ee5f7
+  react-native-eid-sdk: dde8c61647598e00493647d89e113d73b8a99e54
   React-nativeconfig: 951ec32f632e81cbd7d40aebb3211313251c092e
   React-NativeModulesApple: 0b3a42ca90069119ef79d8b2327d01441d71abd4
   React-perflogger: 271f1111779fef70f9502d1d38da5132e5585230
@@ -1579,8 +1552,9 @@ SPEC CHECKSUMS:
   ReactCommon: 2cde697fd80bd31da1d6448d25a5803088585219
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   Yoga: 56f906bf6c11c931588191dde1229fd3e4e3d557
 
-PODFILE CHECKSUM: 7a66a8fbe2733c2395a3b9689e83a70f856c6d63
+PODFILE CHECKSUM: 38d2e04fca487e29825123e38a699b8dee87ef7d
 
 COCOAPODS: 1.15.2

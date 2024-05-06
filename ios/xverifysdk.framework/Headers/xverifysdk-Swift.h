@@ -310,14 +310,108 @@ SWIFT_CLASS("_TtC10xverifysdk14BaseApiService")
 @end
 
 
+SWIFT_CLASS("_TtC10xverifysdk9DataGroup") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk3COM") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface COM : DataGroup
+@end
+
+
 SWIFT_CLASS("_TtC10xverifysdk19CachedDateFormatter")
 @interface CachedDateFormatter : NSObject
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 
+
+SWIFT_CLASS("_TtC10xverifysdk10DataGroup1") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup1 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11DataGroup11") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup11 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11DataGroup12") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup12 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11DataGroup13") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup13 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11DataGroup14") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup14 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11DataGroup15") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup15 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk10DataGroup2") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup2 : DataGroup
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk10DataGroup7") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface DataGroup7 : DataGroup
+@end
+
+typedef SWIFT_ENUM(NSInteger, DataGroupId, open) {
+  DataGroupIdCOM = 0x60,
+  DataGroupIdDG1 = 0x61,
+  DataGroupIdDG2 = 0x75,
+  DataGroupIdDG3 = 0x63,
+  DataGroupIdDG4 = 0x76,
+  DataGroupIdDG5 = 0x65,
+  DataGroupIdDG6 = 0x66,
+  DataGroupIdDG7 = 0x67,
+  DataGroupIdDG8 = 0x68,
+  DataGroupIdDG9 = 0x69,
+  DataGroupIdDG10 = 0x6A,
+  DataGroupIdDG11 = 0x6B,
+  DataGroupIdDG12 = 0x6C,
+  DataGroupIdDG13 = 0x6D,
+  DataGroupIdDG14 = 0x6E,
+  DataGroupIdDG15 = 0x6F,
+  DataGroupIdDG16 = 0x70,
+  DataGroupIdSOD = 0x77,
+  DataGroupIdUnknown = 0x00,
+};
+
+@class NSString;
+@class NfcEidModel;
+
+SWIFT_CLASS("_TtC10xverifysdk9EidFacade")
+@interface EidFacade : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+/// Performs the NFC reading process with the MRZ key (9 last digits + DOB + DOE)
+/// \param mrzKey Machine Readable Zone Key
+///
+/// \param completionHandler Success callback
+///
+/// \param errorHandler Error callback
+///
+- (void)readChipNfcWithMrzKey:(NSString * _Nonnull)mrzKey completionHandler:(void (^ _Nonnull)(NfcEidModel * _Nonnull))completionHandler errorHandler:(void (^ _Nonnull)(NSError * _Nonnull))errorHandler;
+@end
+
+@class NSMutableArray;
+
 SWIFT_CLASS("_TtC10xverifysdk9EidReader") SWIFT_AVAILABILITY(ios,introduced=13)
 @interface EidReader : NSObject
+- (void)readEidWithMrzKey:(NSString * _Nonnull)mrzKey tags:(NSMutableArray * _Nonnull)tags skipSecureElements:(BOOL)skipSecureElements skipCA:(BOOL)skipCA skipPACE:(BOOL)skipPACE completionHandler:(void (^ _Nonnull)(NfcEidModel * _Nullable, NSError * _Nullable))completionHandler;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
@@ -354,7 +448,13 @@ SWIFT_CLASS("_TtC10xverifysdk10ErrorUtils")
 @end
 
 
-@class NSString;
+
+SWIFT_CLASS("_TtC10xverifysdk7MRZInfo")
+@interface MRZInfo : NSObject
+- (nonnull instancetype)init SWIFT_UNAVAILABLE;
++ (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
+@end
+
 
 SWIFT_PROTOCOL("_TtP10xverifysdk13ModelProtocol_")
 @protocol ModelProtocol
@@ -363,6 +463,17 @@ SWIFT_PROTOCOL("_TtP10xverifysdk13ModelProtocol_")
 @property (nonatomic, readonly, copy) NSString * _Nullable statusMessage;
 @required
 - (BOOL)isValid SWIFT_WARN_UNUSED_RESULT;
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk11NfcEidModel") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface NfcEidModel : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
+SWIFT_CLASS("_TtC10xverifysdk16NotImplementedDG") SWIFT_AVAILABILITY(macos,introduced=10.15) SWIFT_AVAILABILITY(ios,introduced=13)
+@interface NotImplementedDG : DataGroup
 @end
 
 
