@@ -1015,34 +1015,15 @@ PODS:
   - react-native-eid-sdk (0.1.0):
     - Alamofire (~> 5.8.1)
     - CocoaLumberjack/Swift
-    - DoubleConversion
-    - glog
     - GoogleMLKit/FaceDetection
     - GoogleMLKit/TextRecognition
     - GoogleMLKit/Vision
-    - hermes-engine
     - ObjectMapper
     - OpenSSL-Universal (~> 1.1.2200)
     - PINCache
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
+    - React
     - SwiftDate
     - SwiftyJSON
-    - Yoga
   - React-nativeconfig (0.74.0)
   - React-NativeModulesApple (0.74.0):
     - glog
@@ -1277,6 +1258,7 @@ PODS:
   - Yoga (0.0.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 5.8.1)
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -1526,7 +1508,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 36a2bbc272300313653d980de5ab700ec86c534a
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 5e05d78fe6505f4a054b86f415733d4ad02dd314
-  react-native-eid-sdk: dde8c61647598e00493647d89e113d73b8a99e54
+  react-native-eid-sdk: 14f1e5fb4af9bf94c155b0403080a297f6422f27
   React-nativeconfig: 951ec32f632e81cbd7d40aebb3211313251c092e
   React-NativeModulesApple: 0b3a42ca90069119ef79d8b2327d01441d71abd4
   React-perflogger: 271f1111779fef70f9502d1d38da5132e5585230
@@ -1555,6 +1537,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: f5b1bf1cd8dd53cd25887ac0eabcfd92301c6a5a
   Yoga: 56f906bf6c11c931588191dde1229fd3e4e3d557
 
-PODFILE CHECKSUM: 38d2e04fca487e29825123e38a699b8dee87ef7d
+PODFILE CHECKSUM: c07a4a7048e1cc304b60868111ffdda1e54bd086
 
 COCOAPODS: 1.15.2

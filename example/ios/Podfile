@@ -24,7 +24,7 @@ target 'EidSdkExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
   
-#  pod 'Alamofire', '~> 5.8.1'
+  pod 'Alamofire', '~> 5.8.1'
 #  pod 'OpenSSL-Universal', '~> 1.1.2200'
 #  pod 'CocoaLumberjack/Swift'
 #  pod 'ObjectMapper'

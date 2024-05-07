@@ -311,6 +311,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6TYQTXBT26;
 				ENABLE_BITCODE = NO;
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}\"",
@@ -395,7 +396,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.finviet.$(PRODUCT_NAME)$(rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "vn.com.finviet.$(PRODUCT_NAME)";
 				PRODUCT_NAME = EidSdkExample;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -418,6 +419,7 @@
 				CODE_SIGN_ENTITLEMENTS = EidSdkExample/EidSdkExample.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6TYQTXBT26;
+				ENABLE_MODULE_VERIFIER = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}\"/**",
@@ -502,7 +504,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.finviet.$(PRODUCT_NAME)$(rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "vn.com.finviet.$(PRODUCT_NAME)";
 				PRODUCT_NAME = EidSdkExample;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
