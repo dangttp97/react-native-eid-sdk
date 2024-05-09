@@ -1,9 +1,4 @@
-import {
-  NativeModules,
-  Platform,
-  requireNativeComponent,
-  ViewProps,
-} from 'react-native';
+import { NativeModules, Platform, requireNativeComponent } from 'react-native';
 import React from 'react';
 import { PersonalInfo, Eid } from './models';
 
@@ -20,7 +15,7 @@ type EidSdkType = {
 };
 
 const { EidSdkModule } = NativeModules;
-const NativeCameraFeedView = requireNativeComponent('CameraFeedView');
+const NativeCameraFeedView = requireNativeComponent<any>('CameraFeedView');
 
 type CameraFeedProps = {
   onReturnMRZData: (data: any) => void;

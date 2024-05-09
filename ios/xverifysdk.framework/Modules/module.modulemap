@@ -1,4 +1,0 @@
-framework module xverifysdk {
-  header "xverifysdk-Swift.h"
-  requires objc
-}
