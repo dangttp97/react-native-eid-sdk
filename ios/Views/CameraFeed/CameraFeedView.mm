@@ -9,6 +9,6 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTViewManager.h>
 
-@interface RCT_EXTERN_MODULE(CameraFeedView, RCTViewManager)
-RCT_EXPORT_VIEW_PROPERTY(onReturnMRZData, RCTBubblingEventBlock)
+@interface RCT_EXTERN_MODULE(CameraFeedViewManager, RCTViewManager)
+RCT_EXPORT_VIEW_PROPERTY(onReturnMRZData, RCTDirectEventBlock)
 @end

@@ -7,33 +7,21 @@
 
 import Foundation
 import React
-import xverifysdk
+import verifysdk
 
+<<<<<<< Updated upstream:ios/Views/CameraFeed/CameraFeedViewManager.swift
 @objc(CameraFeedView)
+=======
+@objc(CameraFeedViewManager)
+>>>>>>> Stashed changes:ios/Sources/Views/CameraFeed/CameraFeedViewManager.swift
 class CameraFeedViewManager: RCTViewManager{
-    public var onReturnMRZData: RCTBubblingEventBlock?
-    
     override func view() -> UIView! {
         let cameraFeedView = CameraFeedView()
-        cameraFeedView.delegate = self
-        
         return cameraFeedView
     }
-}
-
-extension CameraFeedViewManager: CameraFeedViewDelegate{
-    func cameraDidReturnMRZData(info: MRZInfo?, key: String) {
-        do{
-            let jsonEncoder = JSONEncoder()
-            let data = try jsonEncoder.encode(info)
-            let jsonObj = try JSONSerialization.jsonObject(with: data) as! [String : Any]
-            
-            if(onReturnMRZData != nil){
-                onReturnMRZData!(jsonObj)
-            }
-        }
-        catch(let error){
-            print(error.localizedDescription)
-        }
+    
+    override static func requiresMainQueueSetup() -> Bool {
+        return true
     }
+    
 }

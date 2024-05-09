@@ -8,26 +8,47 @@
 import UIKit
 import CoreMedia
 import AVFoundation
-import xverifysdk
+import verifysdk
 
-protocol CameraFeedViewDelegate{
-    func cameraDidReturnMRZData(info: MRZInfo?, key: String)
+extension MRZInfo: Encodable{
+    enum CodingKeys: String, CodingKey{
+        case documentType
+        case documentCode
+        case issuingState
+        case nationality
+        case documentNumber
+        case dateOfBirth
+        case gender
+        case dateOfExpiry
+    }
+    public func encode(to encoder: any Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(dateOfBirth, forKey: .dateOfBirth)
+        try container.encode(dateOfExpiry, forKey: .dateOfExpiry)
+        try container.encode(documentCode, forKey: .documentCode)
+        try container.encode(documentType.rawValue, forKey: .documentType)
+        try container.encode(documentNumber, forKey: .documentNumber)
+        try container.encode(gender, forKey: .gender)
+        try container.encode(issuingState, forKey: .issuingState)
+        try container.encode(nationality, forKey: .nationality)
+    }
 }
 
 class CameraFeedView: UIView {
+    @objc var onReturnMRZData: RCTDirectEventBlock?
     private var session = AVCaptureSession()
-    private let cameraFrame = UIView()
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    
-    var delegate: CameraFeedViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
         setupUI()
     }
     
@@ -42,17 +63,24 @@ class CameraFeedView: UIView {
                 
                 self.setupCaptureSessionOutput()
                 self.setupCaptureSessionInput()
-                self.setupLayer()
             }
         })
     }
     
-    private func setupLayer(){
-        self.layer.cornerRadius = 10.0
-        cameraFrame.layer.cornerRadius = 10.0
-        cameraFrame.removeFromSuperview()
-        self.addSubview(cameraFrame)
-        cameraFrame.frame = self.frame
+    private func setupCaptureSessionOutput(){
+        session.beginConfiguration()
+        session.sessionPreset = .high
+        let output = AVCaptureVideoDataOutput()
+        output.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA]
+        output.alwaysDiscardsLateVideoFrames = true
+        let outputQueue = DispatchQueue(label: "vn.com.finviet.VideoDataOutputQueue")
+        output.setSampleBufferDelegate(self, queue: outputQueue)
+        guard session.canAddOutput(output) else {
+            print("Failed to add capture session output.")
+            return
+        }
+        session.addOutput(output)
+        session.commitConfiguration()
     }
     
     private func setupCaptureSessionInput(){
@@ -91,41 +119,41 @@ class CameraFeedView: UIView {
         startSession()
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        cameraFrame.frame = self.frame
-    }
-    
     private func startSession(){
-        session.startRunning()
+        DISPATCH_ASYNC_BG {
+            self.session.startRunning()
+        }
     }
     
     private func stopSession(){
-        session.stopRunning()
+        DISPATCH_ASYNC_BG {
+            self.session.stopRunning()
+        }
     }
     
     private func processMRZBuffer(_ buffer: CMSampleBuffer){
         MRZUtils.processMRZ(sampleBuffer: buffer, timeRequired: 0, callback: { info in
-            let mrzKey = EIDFACADE.generateMRZKey(eidNumber: info!.documentNumber, dateOfBirth: info!.dateOfBirth, dateOfExpiry: info!.dateOfExpiry)
-            self.delegate?.cameraDidReturnMRZData(info: info, key: mrzKey)
+            if(info != nil){
+                let mrzKey = EIDFACADE.generateMRZKey(eidNumber: info!.documentNumber, dateOfBirth: info!.dateOfBirth, dateOfExpiry: info!.dateOfExpiry)
+                
+                do{
+                    let jsonEncoder = JSONEncoder()
+                    let data = try jsonEncoder.encode(info)
+                    let jsonObj = try JSONSerialization.jsonObject(with: data) as! [String : Any]
+                    
+                    if(self.onReturnMRZData != nil){
+                        print(jsonObj)
+                        self.onReturnMRZData!(jsonObj)
+                    }
+                }
+                catch(let error){
+                    print("React Native: \(error.localizedDescription)")
+                }
+            }
         })
     }
     
-    private func setupCaptureSessionOutput(){
-        session.beginConfiguration()
-        session.sessionPreset = .high
-        let output = AVCaptureVideoDataOutput()
-        output.videoSettings = [(kCVPixelBufferPixelFormatTypeKey as String): kCVPixelFormatType_32BGRA]
-        output.alwaysDiscardsLateVideoFrames = true
-        let outputQueue = DispatchQueue(label: "vn.com.finviet.VideoDataOutputQueue")
-        output.setSampleBufferDelegate(self, queue: outputQueue)
-        guard session.canAddOutput(output) else {
-            print("Failed to add capture session output.")
-            return
-        }
-        session.addOutput(output)
-        session.commitConfiguration()
-    }
+    
 }
 
 extension CameraFeedView:AVCaptureVideoDataOutputSampleBufferDelegate{

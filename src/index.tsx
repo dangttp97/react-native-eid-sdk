@@ -1,4 +1,9 @@
-import { NativeModules, Platform, requireNativeComponent } from 'react-native';
+import {
+  NativeModules,
+  Platform,
+  requireNativeComponent,
+  ViewProps,
+} from 'react-native';
 import React from 'react';
 import { PersonalInfo, Eid } from './models';
 
@@ -15,12 +20,12 @@ type EidSdkType = {
 };
 
 const { EidSdkModule } = NativeModules;
-const CameraFeedView = requireNativeComponent('CameraFeedView');
+const NativeCameraFeedView = requireNativeComponent('CameraFeedView');
 
 type CameraFeedProps = {
   onReturnMRZData: (data: any) => void;
 };
-const CameraFeed = ({ ...props }: CameraFeedProps) => {
+const CameraFeedView = ({ ...props }: CameraFeedProps) => {
   const onReturnMRZData = (event: any) => {
     if (!props.onReturnMRZData) {
       return;
@@ -28,12 +33,12 @@ const CameraFeed = ({ ...props }: CameraFeedProps) => {
 
     props.onReturnMRZData(event.nativeEvent);
   };
-  return <CameraFeedView {...props} onReturnMRZData={onReturnMRZData} />;
+  return <NativeCameraFeedView {...props} onReturnMRZData={onReturnMRZData} />;
 };
 
 const EidSdk: EidSdkType = Platform.select({
   ios: {
-    CameraFeedView: CameraFeed,
+    CameraFeedView,
     initialize: EidSdkModule.initialize,
     getPersonalInfo: EidSdkModule.getPersonalInfo,
     showScanFaceView: () => {

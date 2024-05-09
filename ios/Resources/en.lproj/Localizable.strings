@@ -1,0 +1,131 @@
+"verify" = "Xác Thực";
+"title_scan_step" = "Quét Thẻ CCCD";
+"ok" = "Đồng ý";
+"cancel" = "Hủy bỏ";
+"loading_data" = "Đang tải dữ liệu...";
+"next_button" = "Tiếp tục";
+"try_again_button" = "Thử lại";
+"done_button" = "Xong";
+
+"step_1_scan_mrz" = "Bước 1: Quét Mã MRZ";
+"step_2_nfc_read" = "Bước 2: Đọc NFC";
+"step_3_face_detect" = "Bước 3: Xác Thực Khuôn Mặt";
+
+"message_info" = "Thông tin";
+"message_warning" = "Cảnh báo";
+"message_error" = "Lỗi";
+"message_success" = "Thành công";
+
+"put_iphone_near_chip" = "Để iPhone gần với thẻ chip CCCD";
+"login_to_eid" = "Đăng nhập vào thẻ CCCD...";
+"read" = "Đọc";
+"tag_not_valid" = "Thẻ chip CCCD không hợp lệ";
+"tag_more_than_one" = "Có nhiều thẻ chip CCCD gần iPhone. Lưu ý chỉ đọc 1 lần 1 thẻ.";
+"tag_connection_error" = "Kết nối không thành công. Xin hãy thử lại.";
+"tag_mrz_not_valid" = "MRZ không hợp lệ.";
+"tag_error" = "Xảy ra sự cố khi đọc thẻ.";
+"tag_error_try_again" = "Xảy ra sự cố khi đọc thẻ. Xin hãy thử lại.";
+"tag_success" = "Thẻ đọc thành công";
+"tag_success_next_step" = "Bước tiếp: Xác Thực Khuôn Mặt >>";
+"scan_mrz" = "DÙNG CAMERA ĐỂ SCAN MRZ CODE - CHUỖI KÝ TỰ MẶT SAU THẺ CCCD GẮN CHIP Ở PHÍA DƯỚI";
+"scan_nfc" = "ĐẶT THIẾT BỊ LÊN THẺ CCCD VÀ KHÔNG DI CHUYỂN";
+
+
+// EID GENERAL
+"eid_photo" = "Ảnh CCCD";
+"eid_valid" = "CCCD đã được xác thực.";
+"eid_invalid" = "CCCD không hợp lệ.";
+"eid_content_valid" = "Chip hợp lệ và đã được xác thực.";
+"eid_ca_invalid" = "Chip không hợp lệ.";
+"eid_pa_invalid" = "Thông tin trong chip đã bị thay đổi.";
+"eid_aa_invalid" = "Thẻ CCCD đã bị làm giả.";
+"eid_rar_not_verified" = "Thông tin SOD không hợp lệ.";
+"eid_rar_signature_not_verified" = "Thông tin xác thực không hợp lệ.";
+"eid_no_data" = "Không đọc được dữ liệu CCCD.";
+"eid_read_fail" = "Đọc mã không thành công.";
+
+// SECURITY
+"eid_asystems" = "Toàn vẹn dữ liệu (A-System Requirements)";
+"eid_ca" = "Chip Authentication";
+"eid_pa" = "Passive Authentication";
+"eid_aa" = "Active Authentication";
+"eid_verification" = "Xác thực";
+"rar_cert_verification" = "RAR Certificate Verification";
+"rar_sign_verification" = "RAR Signature Verification";
+
+
+"portrait_photo" = "Ảnh Selfie";
+"section_personal" = "Thông Tin Chủ thể";
+"section_card" = "Thông Tin Thẻ";
+"label_name:" = "Họ và tên:";
+"label_eid_number:" = "Số CCCD:";
+"label_date_of_birth:" = "Ngày sinh:";
+"label_date_of_expiry:" = "Ngày hết hạn:";
+"label_gender:" = "Giới tính:";
+"label_nationality:" = "Quốc tịch:";
+"label_ethnicity:" = "Dân tộc:";
+"label_religion:" = "Tôn giáo:";
+"label_place_of_origin:" = "Quê quán:";
+"label_place_of_residence:" = "Thường trú:";
+"label_identification:" = "Đặc điểm nhận dạng:";
+"label_date_of_issue:" = "Ngày cấp:";
+"label_date_of_expiry:" = "Có giá trị đến:";
+"label_father_name:" = "Tên bố:";
+"label_mother_name:" = "Tên mẹ:";
+"label_spouse_name:" = "Tên vợ/chồng:";
+"label_old_id:" = "Số CMND:";
+"label_document_type:" = "Loại ID:";
+"label_issuing_authority:" = "Đơn vị cung cấp:";
+"label_pace:" = "PACE:";
+"label_chip_authentication:" = "Bảo mật chip:";
+"label_asystem" = "Toàn vẹn";
+"label_verify_id" = "Xác thực CCCD";
+"label_face_matching" = "Face Matching";
+
+// FACE DETECTION
+"put_your_face_in_the_frame" = "Giữ điện thoại cố định, đưa khuôn mặt của bạn vào khung hình và nhìn thẳng";
+"please_look_straight" = "Xin vui lòng nhìn thẳng";
+"please_tilt_your_face_to_the_left" = "Xin vui lòng nghiêng mặt sang bên trái";
+"please_tilt_your_face_to_the_right" = "Xin vui lòng nghiêng mặt sang bên phải";
+"please_open_your_mouth" = "Xin vui lòng mở miệng";
+"please_smile" = "Xin vui lòng hãy cười";
+"multi_face" = "Có nhiều khuôn mặt trong khung hình";
+"please_wait_verifying" = "Đang xác thực, vui lòng chờ";
+"face_detecion_fail" = "Xác thực khuôn mặt không thành công. Xin vui lòng thử lại";
+
+// VERIFY RESULT
+"verify_success" = "Xác thực thành công";
+"verify_fail" = "Không thành công";
+"verify_fail_title" = "Xác thực không thành công";
+"verify_success_description" = "Chúc mừng bạn đã hoàn tất xác thực.\nBấm nút TIẾP TỤC để ký số.";
+"verify_fail_description" = "Xác thực không thành công.\nVui lòng thử lại.";
+"error_verification" = "Xác thực không thành công. Xin vui lòng thử lại.";
+"verify_success_message" = "Chúc mừng bạn đã hoàn tất xác thực.";
+
+// MODULE
+"title_eid" = "CCCD";
+"title_ekyc" = "eKYC";
+"title_ceca" = "Hợp Đồng";
+
+// INTRO
+"intro_title_eid" = "Xác thực CCCD gắn chip";
+"intro_description_eid" = "Xác minh thông tin thật giả của CCCD gắn chip và tích hợp với dịch vụ xác thực của C06.\n\nBước 1: Xác minh toàn vẹn dữ liệu CA/PA/AA.\nBước 2: Xác thực với C06.\nBước 3: Hiển thị thông tin chủ thẻ.";
+
+"intro_title_ekyc" = "Xác thực eKYC";
+"intro_description_ekyc" = "Xác minh thông tin thật giả của CCCD gắn chip, eKYC và tích hợp với dịch vụ xác thực của C06.\n\nBước 1: Xác minh toàn vẹn dữ liệu CA/PA/AA.\nBước 2: Xác định thực thể sống.\nBước 3: Xác thực với C06.\nBước 4: Hiển thị thông tin chủ thẻ và khuôn mặt.";
+
+"intro_title_contract" = "Xác thực hợp đồng";
+"intro_description_contract" = "Xác minh thông tin thật giả của CCCD gắn chip, eKYC và tích hợp với dịch vụ xác thực của C06.\n\nBước 1: Đọc hợp đồng.\nBước 2: Xác minh toàn vẹn dữ liệu CA/PA/AA.\nBước 3: Xác định thực thể sống.\nBước 4: Xác thực với C06. \nBước 5: Hiển thị thông tin chủ thẻ và khuôn mặt.\nBước 6: Hoàn tất ký kết hợp đồng";
+
+//OCR
+"ocr_read_fail" = "Đọc dữ liệu không thành công";
+"ocr_capture_front" = "CHỤP ẢNH MẶT TRƯỚC CCCD/CMND. VUI LÒNG ĐẶT THẺ VÀO KHUNG HÌNH.";
+"ocr_capture_back" = "CHỤP ẢNH MẶT SAU CCCD/CMND. VUI LÒNG ĐẶT THẺ VÀO KHUNG HÌNH.";
+"chip" = "CCCD Gắn Chip";
+"cccd" = "CCCD";
+"cmnd" = "CMND";
+"passport" = "Hộ chiếu";
+"loading_ocr" = "Đang trích xuất dữ liệu. Vui lòng chờ.";
+"error_ocr_card" = "Xảy ra lỗi khi trích xuất. Xin vui lòng thử lại";
+"error_ocr_not_same_document" = "Lỗi. Mặt trước và mặt sau không cùng loại giấy tờ.";
+
