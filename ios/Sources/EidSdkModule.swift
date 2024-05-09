@@ -24,9 +24,11 @@ class EidSdkModule: NSObject {
             let host = urlComp.host!
             APISERVICE.initialize(apiKey: apiKey , apiBaseUrl: host, customerCode: customerCode)
         }
-        
+    }
+    
+    @objc func presentViewController(){
         DispatchQueue.main.async{
-            let navController = NavigationController(rootViewController: VerifyEidMainViewController())
+            let navController = NavigationController(rootViewController: MRZScannerViewController())
             navController.setNavigationBarHidden(true, animated: false)
             navController.modalPresentationStyle = .fullScreen
             

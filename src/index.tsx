@@ -39,9 +39,7 @@ const EidSdk: EidSdkType = Platform.select({
     showScanFaceView: () => {
       throw new Error('Not implemented');
     },
-    start: () => {
-      throw new Error('Not implemented');
-    },
+    start: EidSdkModule.presentViewController,
   },
   android: {
     CameraFeedView: undefined,

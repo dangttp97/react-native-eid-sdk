@@ -26,6 +26,7 @@ class MRZScannerViewController: NavigationBarViewController {
     // --------------------------------------
     override func viewDidLoad() {
         super.viewDidLoad()
+        importImageButton.isHidden = true
         //self.navigationItem.title = LOCALIZED("step_1_scan_mrz")
         setLogoImage(UIImage(named: "ic_header_logo"))
         animationScanNfc.isHidden = true
@@ -215,7 +216,7 @@ class MRZScannerViewController: NavigationBarViewController {
         
         mrzScanButton.isHidden = true
         nfcScanButton.isHidden = true
-        importImageButton.isHidden = false
+//        importImageButton.isHidden = false
     }
     
     private func proccessMRZ(sampleBuffer: CMSampleBuffer) {
@@ -243,7 +244,7 @@ class MRZScannerViewController: NavigationBarViewController {
         self.mrzInstructionLabel.isHidden = true
         self.nfcInstructionLabel.isHidden = false
         self.animationScanNfc.isHidden = false
-        self.importImageButton.isHidden = true
+//        self.importImageButton.isHidden = true
         if previewLayer != nil {
             self.previewLayer.isHidden = true
         }
