@@ -10,6 +10,7 @@ import Lottie
 
 class VerifyingEidViewController: NavigationBarViewController {
 
+    public var completion: RCTResponseSenderBlock?
     @IBOutlet weak var animationLoading: LottieAnimationView!
     @IBOutlet weak var stepInstructionLabel: UILabel!
     
@@ -64,8 +65,34 @@ class VerifyingEidViewController: NavigationBarViewController {
                     ONBOARDDATAMANAGER.eid?.eidVerified = eidVerified
                     ONBOARDDATAMANAGER.eid?.eidSignatureVerified = eidSignatureVerified
                     if eidVerified {
-                        let controller = INIT_CONTROLLER_XIB(VerifyEidSuccessViewController.self)
-                        self.navigationController?.pushViewController(controller, animated: true)
+                        if(self.completion != nil){
+                            let eidData = ONBOARDDATAMANAGER.eid
+                            let data = ["personOptionalDetails":[
+                                "age": "",
+                                "dateOfBirth": eidData?.dg13?.dateOfBirth,
+                                "dateOfExpiry": eidData?.dg13?.dateOfExpiry,
+                                "dateOfIssue":  eidData?.dg13?.dateOfIssue,
+                                "eidNumber": eidData?.dg13?.eidNumber,
+                                "ethnicity": eidData?.dg13?.ethnicity,
+                                "face": eidData?.eidImage?.toBase64(),
+                                "fatherName": eidData?.dg13?.fatherName,
+                                "fullname": eidData?.dg13?.fullName,
+                                "gender": eidData?.dg13?.gender,
+                                "motherName": eidData?.dg13?.motherName,
+                                "oldEidNumber": eidData?.dg13?.oldEidNumber,
+                                "personalIdentification": eidData?.dg13?.personalIdentification,
+                                "placeOfOrigin": eidData?.dg13?.placeOfOrigin,
+                                "placeOfResidence": eidData?.dg13?.placeOfResidence,
+                                "religion": eidData?.dg13?.religion,
+                                "spouseName": eidData?.dg13?.spouseName
+                            ]]
+                            
+                            print(data)
+                            self.completion!([data])
+                        }
+                        self.navigationController?.dismiss(animated: true)
+//                        let controller = INIT_CONTROLLER_XIB(VerifyEidSuccessViewController.self)
+//                        self.navigationController?.pushViewController(controller, animated: true)
                     } else {
                         Graphics.showAlert(title: LOCALIZED("verify_fail"), message: LOCALIZED("error_verification"), cancelTitle: LOCALIZED("cancel")) {
                             if let navigationController = self.navigationController {

@@ -6,6 +6,8 @@ import Lottie
 
 class MRZScannerViewController: NavigationBarViewController {
     
+    public var completion: RCTResponseSenderBlock?
+    
     @IBOutlet weak private var cameraView: UIView!
     @IBOutlet weak var cameraFrameImage: UIView!
     @IBOutlet weak var animationScanNfc: LottieAnimationView!
@@ -329,6 +331,7 @@ class MRZScannerViewController: NavigationBarViewController {
     private func navigateToVerifyingEidView() {
         DISPATCH_ASYNC_MAIN {
             let controller = INIT_CONTROLLER_XIB(VerifyingEidViewController.self)
+            controller.completion = self.completion
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }

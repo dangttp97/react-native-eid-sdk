@@ -80,4 +80,9 @@ extension UIImage {
 			UIImageWriteToSavedPhotosAlbum(self, completionTarget, completionSelector, nil)
 		}
 	}
+    
+    func toBase64()-> String?{
+        let imageData = self.jpegData(compressionQuality: 1)
+        return imageData?.base64EncodedString() ?? ""
+    }
 }

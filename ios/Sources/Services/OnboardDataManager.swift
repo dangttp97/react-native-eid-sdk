@@ -5,7 +5,11 @@ class OnboardDataManager: NSObject {
 
     var mrzKey: String = ""
     var mrzInfo: MRZInfo?
-    var eid: NfcEidModel?
+    var eid: NfcEidModel?{
+        didSet{
+            NotificationCenter.default.post(name: NSNotification.Name("example.eidmodel"), object: oldValue)
+        }
+    }
     var faceId: String = ""
     var ekycFront: String = ""
     

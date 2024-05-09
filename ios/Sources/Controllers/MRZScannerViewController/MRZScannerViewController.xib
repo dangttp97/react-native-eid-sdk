@@ -164,9 +164,6 @@
             <point key="canvasLocation" x="34.782608695652179" y="34.821428571428569"/>
         </view>
     </objects>
-    <designables>
-        <designable name="gtu-eb-bpA"/>
-    </designables>
     <resources>
         <image name="image_frame" width="438" height="306"/>
         <namedColor name="appColorBackground">

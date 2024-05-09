@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import EidSdk from 'react-native-eid-sdk';
 
 const App = () => {
@@ -12,15 +12,31 @@ const App = () => {
     );
   }, []);
 
+  const [data, setData] = React.useState<EidSdk.Eid | undefined>(undefined);
+
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Pressable
-        onPress={() => {
-          EidSdk.start();
-        }}
-      >
-        <Text style={{ color: 'black' }}>Nhấn để mở EID</Text>
-      </Pressable>
+      {!data ? (
+        <Pressable
+          onPress={() => {
+            EidSdk.start((data) => setData(data));
+          }}
+        >
+          <Text style={{ color: 'black' }}>Nhấn để mở EID</Text>
+        </Pressable>
+      ) : (
+        <ScrollView
+          style={{
+            paddingHorizontal: 20,
+            paddingTop: 60,
+            paddingBottom: 20,
+          }}
+        >
+          <Text style={{ color: 'black' }}>
+            {JSON.stringify(data, undefined, 2)}
+          </Text>
+        </ScrollView>
+      )}
     </View>
   );
 };
