@@ -1579,7 +1579,7 @@ SPEC CHECKSUMS:
   React-jsitracing: 72dce571a387f9d085482142837222c31a8d6c3a
   React-logger: 03f2f7b955cfe24593a2b8c9705c23e142d1ad24
   React-Mapbuffer: 1ab3316cb736411bc641311b4b71e75099ae56ad
-  react-native-eid-sdk: f689c86c9c0fb751ef96db6e16775f7deaef8083
+  react-native-eid-sdk: 45fd97f59718dc7fdfe38267b2e5a938eb2af509
   React-nativeconfig: fef0a46effa630d72f137636a990d7df2f6a5f7c
   React-NativeModulesApple: 8257dd73991f2e410b9c9d12801691439a0dc821
   React-perflogger: 271f1111779fef70f9502d1d38da5132e5585230

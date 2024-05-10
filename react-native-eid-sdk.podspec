@@ -18,13 +18,13 @@ Pod::Spec.new do |s|
   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
 
   s.source_files = "ios/Sources/**/*.{h,m,mm,swift}"
-  #  s.resources = "ios/Sources/**/*.{xib,storyboard,xcassets,strings,otf,json}"
-  s.resource_bundles = {
-    'Bundle' => [
-    'ios/Resources/**/*.{xcassets,strings,otf,json,pem}',
-    "ios/Sources/**/*.{xib,storyboard}"
-    ]
-  }
+    s.resources = "ios/Sources/**/*.{xib,storyboard,xcassets,strings,otf,json}"
+#  s.resource_bundles = {
+#    'Bundle' => [
+#    'ios/Resources/**/*.{xcassets,strings,otf,json,pem}',
+#    "ios/Sources/**/*.{xib,storyboard}"
+#    ]
+#  }
   s.dependency "verifysdk"
   s.dependency "SnapKit"
   s.dependency "HMSegmentedControl"
