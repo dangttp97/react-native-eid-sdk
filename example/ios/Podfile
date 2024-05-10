@@ -1,9 +1,9 @@
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+                                        'require.resolve(
+                                        "react-native/scripts/react_native_pods.rb",
+                                        {paths: [process.argv[1]]},
+                                        )', __dir__]).strip
 
 platform :ios, min_ios_version_supported
 prepare_react_native_project!
@@ -17,31 +17,29 @@ end
 target 'EidSdkExample' do
   project 'EidSdkExample.xcodeproj'
   config = use_native_modules!
+  use_frameworks! :linkage => :static
   
-  use_react_native!(
-    :path => config[:reactNativePath],
-    # An absolute path to your application root.
-    :app_path => "#{Pod::Config.instance.installation_root}/.."
-  )
+  use_react_native!(:path => config[:reactNativePath], :app_path => "#{Pod::Config.instance.installation_root}/..")
   
-  pod 'Alamofire', '~> 5.8.1'
-#  pod 'OpenSSL-Universal', '~> 1.1.2200'
-#  pod 'CocoaLumberjack/Swift'
-#  pod 'ObjectMapper'
-#  pod 'SwiftDate'
-  pod 'PINCache', :modular_headers => true
-#  pod 'SwiftyJSON'
-#  pod 'GoogleMLKit/Vision'
-#  pod 'GoogleMLKit/FaceDetection'
-#  pod 'GoogleMLKit/TextRecognition'
+  pod "verifysdk", :git => "https://github.com/buidiemnhi/xverifysdk.git"
 end
 
 post_install do |installer|
   config = use_native_modules!
-  react_native_post_install(
-    installer,
-    config[:reactNativePath],
-    :mac_catalyst_enabled => false,
-    # :ccache_enabled => true
-  )
+  react_native_post_install(installer, config[:reactNativePath],:mac_catalyst_enabled => false)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |configs|
+      configs.build_settings['LD_NO_PIE'] = 'NO'
+      configs.build_settings['GCC_WARN_INHIBIT_ALL_WARNINGS'] = 'YES'
+      configs.build_settings['SWIFT_SUPPRESS_WARNINGS'] = 'YES'
+      configs.build_settings['APPLICATION_EXTENSION_API_ONLY'] = 'NO'
+      configs.build_settings['ENABLE_BITCODE'] = 'NO'
+      configs.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
+      
+      xcconfig_path = configs.base_configuration_reference.real_path
+      xcconfig = File.read(xcconfig_path)
+      xcconfig_mod = xcconfig.gsub(/DT_TOOLCHAIN_DIR/, "TOOLCHAIN_DIR")
+      File.open(xcconfig_path, "w") { |file| file << xcconfig_mod }
+    end
+  end
 end
