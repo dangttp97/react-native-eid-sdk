@@ -12,41 +12,9 @@ extension String{
     }
 }
 
-extension DataGroup13: Encodable{
-    
-    
-    enum CodingKeys: CodingKey{
-        case eidNumber
-        case fullName
-        case dateOfBirth
-        case gender
-        case nationality
-        case ethnicity
-        case religion
-        case placeOfOrigin
-        case placeOfResidence
-        case personalIdentification
-        case dateOfIssue
-        case dateOfExpiry
-        case fatherName
-        case motherName
-        case spouseName
-        case oldEidNumber
-        case unkIdNumber
-        case unkInfo
-    }
-    
-    public func encode(to encoder: any Encoder) throws {
-        
-    }
-}
-
 @objc(EidSdkModule)
 class EidSdkModule: NSObject {
-    
-    
-    @objc(initialize:apiBaseUrl:customerCode:)
-    func initialize(_ apiKey: String, apiBaseUrl: String, customerCode: String){
+    @objc func initialize(_ apiKey: String, apiBaseUrl: String, customerCode: String){
         DISPATCH_ASYNC_BG {
             print("\(apiKey) \(apiBaseUrl) \(customerCode)")
             let urlComp = URLComponents(string: apiBaseUrl)!

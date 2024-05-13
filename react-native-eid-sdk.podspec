@@ -36,7 +36,7 @@ Pod::Spec.new do |s|
   s.dependency 'iProgressHUD'
   s.dependency 'FCAlertView'
   s.dependency 'SwiftMessages'
-  s.dependency 'lottie-ios'
+  s.dependency 'lottie-ios', '~> 3.2.3'
   s.dependency 'HMSegmentedControl'
   
   if respond_to?(:install_modules_dependencies, true)

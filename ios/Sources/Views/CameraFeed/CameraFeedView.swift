@@ -9,47 +9,29 @@ import UIKit
 import CoreMedia
 import AVFoundation
 import verifysdk
-
-extension MRZInfo: Encodable{
-    enum CodingKeys: String, CodingKey{
-        case documentType
-        case documentCode
-        case issuingState
-        case nationality
-        case documentNumber
-        case dateOfBirth
-        case gender
-        case dateOfExpiry
-    }
-    public func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(dateOfBirth, forKey: .dateOfBirth)
-        try container.encode(dateOfExpiry, forKey: .dateOfExpiry)
-        try container.encode(documentCode, forKey: .documentCode)
-        try container.encode(documentType.rawValue, forKey: .documentType)
-        try container.encode(documentNumber, forKey: .documentNumber)
-        try container.encode(gender, forKey: .gender)
-        try container.encode(issuingState, forKey: .issuingState)
-        try container.encode(nationality, forKey: .nationality)
-    }
-}
+import React
 
 class CameraFeedView: UIView {
-    @objc var onReturnMRZData: RCTDirectEventBlock?
+    @objc var onReturnCitizenData: RCTDirectEventBlock?
     private var session = AVCaptureSession()
     private var previewLayer: AVCaptureVideoPreviewLayer!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupUI()
     }
     
-    override func willMove(toSuperview newSuperview: UIView?) {
-        super.willMove(toSuperview: newSuperview)
-        setupUI()
+    override func reactSetFrame(_ frame: CGRect) {
+        super.reactSetFrame(frame)
+        self.previewLayer.frame = self.layer.bounds
+        self.previewLayer.masksToBounds = true
+        self.clipsToBounds = true
+        setNeedsLayout()
     }
     
     private func setupUI(){
@@ -57,8 +39,6 @@ class CameraFeedView: UIView {
             DispatchQueue.main.async {
                 self.previewLayer = AVCaptureVideoPreviewLayer(session: self.session)
                 self.previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                self.previewLayer.frame = self.frame
-                self.previewLayer.cornerRadius = 10
                 self.layer.addSublayer(self.previewLayer)
                 
                 self.setupCaptureSessionOutput()
@@ -131,29 +111,32 @@ class CameraFeedView: UIView {
         }
     }
     
+    private func readDataFromNfc(withKey mrzKey: String){
+        EIDFACADE.readChipNfc(mrzKey: mrzKey, completionHandler: { nfcInfo in
+            if(self.onReturnCitizenData != nil){
+                self.onReturnCitizenData!(nfcInfo.toJSON())
+                self.session.startRunning()
+            }
+        }, errorHandler: { error in
+            print("iOS Read NFC error: \(error.localizedDescription)")
+            self.session.startRunning()
+        })
+    }
+    
     private func processMRZBuffer(_ buffer: CMSampleBuffer){
         MRZUtils.processMRZ(sampleBuffer: buffer, timeRequired: 0, callback: { info in
             if(info != nil){
-                let mrzKey = EIDFACADE.generateMRZKey(eidNumber: info!.documentNumber, dateOfBirth: info!.dateOfBirth, dateOfExpiry: info!.dateOfExpiry)
-                
-                do{
-                    let jsonEncoder = JSONEncoder()
-                    let data = try jsonEncoder.encode(info)
-                    let jsonObj = try JSONSerialization.jsonObject(with: data) as! [String : Any]
-                    
-                    if(self.onReturnMRZData != nil){
-                        print(jsonObj)
-                        self.onReturnMRZData!(jsonObj)
-                    }
+                if self.session.isRunning == true {
+                    self.session.stopRunning()
                 }
-                catch(let error){
-                    print("React Native: \(error.localizedDescription)")
+                
+                DispatchQueue.main.async {
+                    let mrzKey = EIDFACADE.generateMRZKey(eidNumber: info!.documentNumber, dateOfBirth: info!.dateOfBirth, dateOfExpiry: info!.dateOfExpiry)
+                    self.readDataFromNfc(withKey: mrzKey)
                 }
             }
         })
     }
-    
-    
 }
 
 extension CameraFeedView: AVCaptureVideoDataOutputSampleBufferDelegate{

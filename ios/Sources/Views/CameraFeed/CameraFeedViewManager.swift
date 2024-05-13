@@ -7,7 +7,7 @@
 
 import Foundation
 import React
-import xverifysdk
+import verifysdk
 
 extension MRZInfo: Encodable{
     enum CodingKeys: String, CodingKey{
@@ -33,31 +33,10 @@ extension MRZInfo: Encodable{
     }
 }
 
-@objc(CameraFeedView)
+@objc(CameraFeedViewManager)
 class CameraFeedViewManager: RCTViewManager{
-    public var onReturnMRZData: RCTBubblingEventBlock?
-    
     override func view() -> UIView! {
         let cameraFeedView = CameraFeedView()
-        cameraFeedView.delegate = self
-        
         return cameraFeedView
-    }
-}
-
-extension CameraFeedViewManager: CameraFeedViewDelegate{
-    func cameraDidReturnMRZData(info: MRZInfo?, key: String) {
-        do{
-            let jsonEncoder = JSONEncoder()
-            let data = try jsonEncoder.encode(info)
-            let jsonObj = try JSONSerialization.jsonObject(with: data) as! [String : Any]
-            
-            if(onReturnMRZData != nil){
-                onReturnMRZData!(jsonObj)
-            }
-        }
-        catch(let error){
-            print(error.localizedDescription)
-        }
     }
 }
